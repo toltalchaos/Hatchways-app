@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import styled from "styled-components";
 import './App.css';
 
+import LandingPage from './Pages/index'
+
+const CONTAINER = styled.div`
+
+max-width: 1080px;
+margin: 0 auto;
+
+`
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <CONTAINER>
+
+    <Router>
+      <Switch>
+
+          <Route exact path='/'>
+            {/* add pathway to component page here  */}
+            <LandingPage></LandingPage>
+          </Route>
+
+          <Route path='/dashboard'>
+            {/* add pathway to component page here  */}
+          </Route>
+
+          <Route path='/other'>
+            {/* add pathway to component page here  */}
+          </Route>
+
+      </Switch>
+    </Router>
+
+   </CONTAINER>
   );
 }
 
