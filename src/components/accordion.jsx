@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import styled from "styled-components";
 import SearchBar from './searchbar';
+import TestList from './testlist';
 
 const UNIT = styled.article`
 header{
@@ -29,7 +30,8 @@ const Accordion = (props) => {
     const [expanded, setExpanded] = useState(false)
     const [textInput, setTextInput] = useState();
     const inputbarhandle = document.getElementById(props.element.login);
-
+    let average = 0;
+    let counter = 0;
 
     function updateSearchParams(e){
         //console.log(searchbarhandle.value)
@@ -40,6 +42,13 @@ const Accordion = (props) => {
             //do nothing?
         }
     }
+
+    props.element.grades.forEach(grade => {
+        average = average + parseInt(grade);
+        counter = counter + 1;
+    });
+
+    
 
     return ( 
 
@@ -53,11 +62,25 @@ const Accordion = (props) => {
           {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
             </header>
+            <div>
+                <p>Email: {props.element.email}</p>
+                <p>Company: {props.element.company}</p>
+                <p>Skill: {props.element.skill}</p>
+                <p>Average: {Math.round(average/counter)} %</p>
+            </div>
             {expanded && 
             
             <div>
-                <SearchBar idd={props.element.id} onKeyUp={updateSearchParams}/>
+
+
+                <SearchBar idd={props.element.id}/>
+
+                <div>{props.element.grades.map((test, index) => {
+                    return(<TestList index={index} test={test}/>)
+                })}</div>
+               
                 
+
             </div>}
         </UNIT>
 

@@ -7,7 +7,7 @@ import Accordion from './accordion';
 
 const DisplayField = (props) => {
     let students = props.object
-    //console.log(props.object)
+    console.log(props.object)
 
     if(students == undefined){
         return(
