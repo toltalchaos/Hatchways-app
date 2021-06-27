@@ -1,57 +1,74 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 
 import DisplayField from '../components/displayfield';
 import SearchBar from '../components/searchbar';
 
 const LANDINGSTYLES = styled.div`
+font-family: 'Raleway', sans-serif;
 display: flex;
 flex-direction: column;
-align-items: center;
-text-align: center;
+input{
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid rgba(94,94,94,0.23);
+}
 
 `
 
 const LandingPage = (props) => {
 
     //create stateful object to handle data
-    const [DataContainer, setDataContainer] = useState(null);
+    const [handler, setHandler] = useState(null);
+    const [DataContainer, setDataContainer] = useState([]);
     //create stateful object to hang on to search data
-    const [searchParams, setSearchparams] = useState("");
     const searchbarhandle = document.getElementById('search');
 
 
     function updateSearchParams(e){
-        //console.log(searchbarhandle.value)
         if(searchbarhandle != null){
-            setSearchparams(searchbarhandle.value)
+           //logic to update search params
+           //loop through filter and fix casing issues
+           
+            setDataContainer(handler.filter((person) => {
+            const name = person.firstName + person.lastName;
+               if(name.toUpperCase().includes(searchbarhandle.value.toUpperCase()))
+               {
+                   return person;
+               }
+               
+            }));
+            
         }
-        else{
-            //do nothing?
-        }
-    }
 
-    async function FindData(desiredData){
-        //fetch data
-        let res= await fetch('https://api.github.com/users');
-        let data = await res.json()
-       
-        //set stateful object to fill with new json object
-        //parse object here and setdatacontainer accordingly
-        setDataContainer(JSON.stringify(data))
-        //console.log("container " + DataContainer)
     }
+useEffect(()=>{
+
+        //fetch data  
+        fetch('https://api.hatchways.io/assessment/students').then(ans => ans.json().then(data => {
+            setDataContainer(data.students)
+            setHandler(data.students)
+    }));
+
+},[])
+
     
-    FindData()   
+        
+    
     return ( 
-       <LANDINGSTYLES>
-           <div>
-           <h1>TEST</h1>
-            <SearchBar onKeyUp={updateSearchParams}/>
-            <DisplayField object={DataContainer} searchValue ={searchParams}/>
-            </div>
-       </LANDINGSTYLES>
-     );
+        <LANDINGSTYLES>
+            <div>
+            
+             <SearchBar idd= "search" onKeyUp={updateSearchParams}/>
+             <DisplayField object={DataContainer}/>
+             
+             
+             </div>
+        </LANDINGSTYLES>
+      );
+
+    
 }
  
 export default LandingPage;

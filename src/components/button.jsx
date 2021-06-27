@@ -6,7 +6,7 @@ const BTN = styled.button`
     padding: 1rem;
     font-size:2rem;
     color: #f6f4d2;
-    font-family:'Kanit', sans-serif;
+    font-family: 'Raleway', sans-serif;
     background-color: #a44a3f;
     text-decoration:none;
     border-radius: 1rem;

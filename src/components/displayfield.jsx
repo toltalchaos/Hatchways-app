@@ -2,32 +2,40 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 
 import Button from '../components/button'
+import Accordion from './accordion';
 
 
 const DisplayField = (props) => {
+    let students = props.object
+    //console.log(props.object)
 
-    //stateful object to hold data from search params
-    const [DisplayData, setDisplayData] = useState(null);
-    console.log(JSON.parse(props.object), props.searchValue)
-
-    function handleSearch(){
-        console.log("click registered")
-        //search logic here for search field 
-        setDisplayData(props.object)
-    }
-
-    if(props.object === null){
-        return ( <div>
-            <Button label="search me" onClick={handleSearch}/>
-        </div> );
+    if(students == undefined){
+        return(
+            <div>
+            </div> 
+        );
     }
     else{
-        return (  <div>
-            <Button label="search me" onClick={handleSearch}/>
-            <p>{DisplayData}</p>
-        </div> );
+         return(
+        <div>
+        {students.map((person) => (
+            <Accordion element={person}/>
+        ))}</div> 
+    );
     }
+
+
+   
+ 
     }
+    
    
  
 export default DisplayField;
+
+
+
+
+
+            
+        
