@@ -23,6 +23,11 @@ h3{
    display: flex;
    justify-content: space-between;
 }
+.tags-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 button{
     margin: 0 0 0 0.5rem;
     border: none;
@@ -111,7 +116,7 @@ const Accordion = (props) => {
               <p>Company: {studentData.company}</p>
               <p>Skill: {studentData.skill}</p>
               <p>Average: {Math.round(average / counter)} %</p>
-              <div>
+              <div className="tags-section">
                   {
                       studentData.tag.map((tag)=>
                       {

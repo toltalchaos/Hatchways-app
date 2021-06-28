@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TAGCARD = styled.div`
-background-color: grey;
-padding: 1rem;
+background-color: #a7a6a6;
+padding: 0 1rem;
 border-radius: 0.3rem;
 `
 const TagElement = (props) => {
