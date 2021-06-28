@@ -60,7 +60,7 @@ useEffect(()=>{
         <LANDINGSTYLES>
             <div>
             
-             <SearchBar idd= "search" onKeyUp={updateSearchParams}/>
+             <SearchBar idd= "search" onKeyUp={updateSearchParams} place="search by name"/>
              <DisplayField object={DataContainer}/>
              
              
