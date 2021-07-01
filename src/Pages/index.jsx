@@ -22,6 +22,7 @@ const LandingPage = (props) => {
     //create stateful object to handle data
     const [handler, setHandler] = useState(null);
     const [DataContainer, setDataContainer] = useState([]);
+    let newKey = 1;
     //create stateful object to hang on to search data
     const searchbarhandle = document.getElementById('search');
 
@@ -30,19 +31,45 @@ const LandingPage = (props) => {
         if(searchbarhandle != null){
            //logic to update search params
            //loop through filter and fix casing issues
-           
             setDataContainer(handler.filter((person) => {
             const name = person.firstName + person.lastName;
-               if(name.toUpperCase().includes(searchbarhandle.value.toUpperCase()))
+            let keyval = searchbarhandle.value.toUpperCase()
+               if(name.toUpperCase().includes(keyval))
                {
+                   
                    return person;
                }
                
+               
             }));
+            
+            
+
             
         }
 
     }
+
+    function SearchByTag(e){
+        //loop each card - looking for classes matching the incoming value
+        const cards = document.getElementsByClassName('student-card')
+        console.log(e.key, cards)
+
+        //iterate over cards
+        for (let index = 0; index < cards.length; index++) {
+            const element = cards[index];
+            
+            console.log(element)
+            //if tag -> exists - remove hide-me class
+            
+            //else -> .hide-me class
+        }
+            
+        
+
+
+    }
+
 useEffect(()=>{
 
         //fetch data  
@@ -61,6 +88,7 @@ useEffect(()=>{
             <div>
             
              <SearchBar idd= "search" onKeyUp={updateSearchParams} place="search by name"/>
+             <SearchBar idd= "tag" onKeyUp={SearchByTag} place="search by tag"/>
              <DisplayField object={DataContainer}/>
              
              

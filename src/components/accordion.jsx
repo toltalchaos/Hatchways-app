@@ -64,6 +64,11 @@ const Accordion = (props) => {
     let average = 0;
     let counter = 0;
 
+    useEffect(()=>{
+      setStudentData({...props.element})
+
+    },[props.element])
+
 
     function AddTag(e){
         if(e.key === 'Enter'){
@@ -75,6 +80,7 @@ const Accordion = (props) => {
             setStudentData({...holder})
             //reset value
             document.getElementById(e.target.id).value = ""
+            //send to put request available from here
         }
     }
 
@@ -120,7 +126,7 @@ const Accordion = (props) => {
                   {
                       studentData.tag.map((tag)=>
                       {
-                          return <TagElement content={tag}/>;
+                          return <TagElement content={tag} Cname={tag}/>;
                       })
                   }
                   

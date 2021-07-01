@@ -9,7 +9,7 @@ border-radius: 0.3rem;
 const TagElement = (props) => {
     return ( 
         <TAGCARD>
-            <p>{props.content}</p>
+            <p className={props.Cname}>{props.content}</p>
         </TAGCARD>
      );
 }

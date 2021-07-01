@@ -31,6 +31,10 @@ body{
   color: #61dafb;
 }
 
+.hide-me{
+  visibility: hidden;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
